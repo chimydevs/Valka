@@ -9,4 +9,5 @@ val Orange40 = Color(0xFFFF5722) // Dark Orange
 val LightOrange = Color(0xFFFFE0B2) // Very Light Orange
 val DarkOrange = Color(0xFFE65100) // Very Dark Orange
 
+
 // Puedes definir más colores según sea necesario

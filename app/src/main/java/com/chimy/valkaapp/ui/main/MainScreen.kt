@@ -1,5 +1,6 @@
 package com.chimy.valkaapp.ui.main
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,23 +27,26 @@ import com.chimy.valkaapp.ui.theme.ValkaAppTheme
 
 @Composable
 fun MainScreen(navController: NavHostController = rememberNavController()) {
+    val buttonShape = MaterialTheme.shapes.medium // Asegúrate de que esto coincida con el shape definido en tu tema
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background )
+            .padding(bottom = 32.dp)
             .padding(16.dp),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.BottomEnd
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             val buttonBorderModifier = Modifier.border(
-                width = 2.dp,
+                width = 5.dp,
                 color = MaterialTheme.colorScheme.primary,
-                shape = MaterialTheme.shapes.medium,
+                shape = buttonShape,
 
                 )
             Button(
@@ -52,7 +56,8 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
                     .then(buttonBorderModifier),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.primary // Fondo usando color del tema
-                )
+                ),
+                shape = buttonShape
             ) {
                 Text(
                     text = "Contadores",
@@ -68,7 +73,8 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
                     .then(buttonBorderModifier),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.primary // Fondo usando color del tema
-                )
+                ),
+                shape = buttonShape
             ) {
                 Text(
                     text = "Reglamento",
@@ -84,7 +90,8 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
                     .then(buttonBorderModifier),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.primary // Fondo usando color del tema
-                )
+                ),
+                shape = buttonShape
             ) {
                 Text(
                     text = "Galería",
@@ -100,7 +107,8 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
                     .then(buttonBorderModifier),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.primary // Fondo usando color del tema
-                )
+                ),
+                shape = buttonShape
             ) {
                 Text(
                     text = "Ranking",
@@ -116,7 +124,8 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
                     .then(buttonBorderModifier),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.primary // Fondo usando color del tema
-                )
+                ),
+                shape = buttonShape
             ) {
                 Text(
                     text = "Contacto",
@@ -127,7 +136,7 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
     }
 }
 
-@Preview(backgroundColor = 0xFFF8F5F5, showBackground = true)
+@Preview(showSystemUi = true)
 @Composable
 fun MainScreenPreview() {
     ValkaAppTheme {
