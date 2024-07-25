@@ -10,10 +10,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
     @Provides
     @Singleton
     fun provideHeroRepository(): HeroRepository {
-        return HeroRepository()
+        return HeroRepository
     }
 }
