@@ -5,43 +5,47 @@ import androidx.lifecycle.ViewModel
 import com.chimy.valkaapp.model.Hero
 import com.chimy.valkaapp.repository.HeroRepository
 
-class CountersViewModel: ViewModel() {
-    //seleccion de heroe
-    val selectedHero = mutableStateOf<Hero?>(null)
 
-    //lsta heroes
+class CounterViewModel : ViewModel() {
+    // Obtener lista de héroes desde el repositorio
     val heroes = HeroRepository.heroes
 
-    //contadores fortaleza
-    val runeCount = mutableStateOf(0)
-    val lifeCount = mutableStateOf(0)
-    val sealCount = mutableStateOf(0)
+    // Heroe seleccionado
+    val selectedHero = mutableStateOf<Hero?>(null) //  inicializado como null
 
-    fun selectHero(hero: Hero) {
+    // Contadores
+    val health = mutableStateOf(0)
+    val attack = mutableStateOf(0)
+    val armor = mutableStateOf(0)
+
+    fun onHeroSelected(hero: Hero) {
         selectedHero.value = hero
+        health.value = hero.initialHealth
+        attack.value = hero.initialAttack
+        armor.value = hero.initialArmor
     }
 
-    fun incrementRune() {
-        runeCount.value++
+    fun increaseHealth() {
+        health.value++
     }
 
-    fun decrementRune() {
-        if (runeCount.value > 0) runeCount.value--
+    fun decreaseHealth() {
+        health.value--
     }
 
-    fun incrementLife() {
-        lifeCount.value++
+    fun increaseAttack() {
+        attack.value++
     }
 
-    fun decrementLife() {
-        if (lifeCount.value > 0) lifeCount.value--
+    fun decreaseAttack() {
+        attack.value--
     }
 
-    fun incrementSeal() {
-        sealCount.value++
+    fun increaseArmor() {
+        armor.value++
     }
 
-    fun decrementSeal() {
-        if (sealCount.value > 0) sealCount.value--
+    fun decreaseArmor() {
+        armor.value--
     }
 }
