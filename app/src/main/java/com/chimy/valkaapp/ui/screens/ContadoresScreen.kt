@@ -42,20 +42,34 @@ fun HeroCounterContainer(viewModel: CounterViewModel = viewModel()) {
     // Estados de expansión de los menús desplegables
     var expandedHero1 by remember { mutableStateOf(false) }
     var expandedHero2 by remember { mutableStateOf(false) }
+    var expandedHero3 by remember { mutableStateOf(false) }
 
     // Selección y estados de los héroes
     val selectedHero1 by viewModel.selectedHero1
     val selectedHero2 by viewModel.selectedHero2
+    val selectedHero3 by viewModel.selectedHero3
 
+    //contadores heroe 1
     val health1 by viewModel.health1
     val attack1 by viewModel.attack1
     val armor1 by viewModel.armor1
 
+    //contadores heroe 2
     val health2 by viewModel.health2
     val attack2 by viewModel.attack2
     val armor2 by viewModel.armor2
 
-    // Interacción para el Dropdownmenu
+    //contadores heroe 3
+    val health3 by viewModel.health3
+    val attack3 by viewModel.attack3
+    val armor3 by viewModel.armor3
+
+    //contadores fortaleza
+    val healthFor by viewModel.healtFort
+    val runas by viewModel.runas
+    val sellos by viewModel.sellos
+
+    // Interacción para el dropdownmenu
     val interactionSource = remember { MutableInteractionSource() }
 
     Column(
@@ -63,7 +77,7 @@ fun HeroCounterContainer(viewModel: CounterViewModel = viewModel()) {
             .padding(16.dp)
             .fillMaxSize()
     ) {
-        // Caja héroe 1
+        // Caja heroe 1
         Column {
             Box {
                 Button(
@@ -135,7 +149,7 @@ fun HeroCounterContainer(viewModel: CounterViewModel = viewModel()) {
             }
         }
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         // Caja héroe 2
         Column {
@@ -208,9 +222,157 @@ fun HeroCounterContainer(viewModel: CounterViewModel = viewModel()) {
                 }
             }
         }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        // Caja héroe 3
+        Column {
+            Box {
+                Button(
+                    onClick = { expandedHero3 = !expandedHero3 },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = selectedHero3?.name ?: "Selecciona tu héroe 3",
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+                DropdownMenu(
+                    expanded = expandedHero3,
+                    onDismissRequest = { expandedHero3 = false }
+                ) {
+                    viewModel.heroes.forEach { hero ->
+                        DropdownMenuItem(
+                            text = { Text(text = hero.name) },
+                            onClick = {
+                                viewModel.onHero2Selected(hero)
+                                expandedHero3 = false
+                            },
+                            interactionSource = interactionSource
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Contadores para el héroe 3
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    CounterRow(
+                        label = "Vida",
+                        value = health3,
+                        onIncrease = { viewModel.increaseHealth3() },
+                        onDecrease = { viewModel.decreaseHealth3() }
+                    )
+                }
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    CounterRow(
+                        label = "Ataque",
+                        value = attack3,
+                        onIncrease = { viewModel.increaseAttack3() },
+                        onDecrease = { viewModel.decreaseAttack3() }
+                    )
+                }
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    CounterRow(
+                        label = "Armadura",
+                        value = armor3,
+                        onIncrease = { viewModel.increaseArmor3() },
+                        onDecrease = { viewModel.decreaseArmor3() }
+                    )
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        // Caja Fortaleza
+        Column {
+            Box {
+                Text(
+                    text = ("Fortaleza"),
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            }
+            DropdownMenu(
+                expanded = expandedHero1,
+                onDismissRequest = { expandedHero1 = false }
+            ) {
+                viewModel.heroes.forEach { hero ->
+                    DropdownMenuItem(
+                        text = { Text(text = hero.name) },
+                        onClick = {
+                            viewModel.onHero1Selected(hero)
+                            expandedHero1 = false
+                        },
+                        interactionSource = interactionSource
+                    )
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Contadores para la fortaleza
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.weight(1f)
+            ) {
+                CounterRow(
+                    label = "Runas",
+                    value = runas,
+                    onIncrease = { viewModel.increaseRunas() },
+                    onDecrease = { viewModel.decreaseRunas() }
+                )
+            }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.weight(1f)
+            ) {
+                CounterRow(
+                    label = "Vida",
+                    value = healthFor,
+                    onIncrease = { viewModel.increaseHealthFor() },
+                    onDecrease = { viewModel.decreaseHealthFor() }
+                )
+            }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.weight(1f)
+            ) {
+                CounterRow(
+                    label = "Sellos",
+                    value = sellos,
+                    onIncrease = { viewModel.increaseSellos() },
+                    onDecrease = { viewModel.decreaseSellos() }
+                )
+            }
+        }
     }
+
+
 }
 
+
+//caja contadores
 @Composable
 fun CounterRow(label: String, value: Int, onIncrease: () -> Unit, onDecrease: () -> Unit) {
     Column(
@@ -222,12 +384,12 @@ fun CounterRow(label: String, value: Int, onIncrease: () -> Unit, onDecrease: ()
         Text(text = label)
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.wrapContentWidth()
+            modifier = Modifier.fillMaxWidth()
         ) {
             IconButton(onClick = onDecrease, modifier = Modifier.size(20.dp)) {
                 Icon(imageVector = Icons.Filled.Remove, contentDescription = "Decrease")
             }
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.weight(1f))
             Text(
                 text = value.toString(),
                 modifier = Modifier
@@ -235,7 +397,7 @@ fun CounterRow(label: String, value: Int, onIncrease: () -> Unit, onDecrease: ()
                 textAlign = TextAlign.Center,
                 fontSize = 20.sp
             )
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.weight(1f))
             IconButton(onClick = onIncrease, modifier = Modifier.size(20.dp)) {
                 Icon(imageVector = Icons.Filled.Add, contentDescription = "Increase")
             }
@@ -244,7 +406,7 @@ fun CounterRow(label: String, value: Int, onIncrease: () -> Unit, onDecrease: ()
 }
 
 
-@Preview
+@Preview(showSystemUi = true, device = "id:pixel_3")
 @Composable
 fun previewCountersScreen() {
     HeroCounterContainer()

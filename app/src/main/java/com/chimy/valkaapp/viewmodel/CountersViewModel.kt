@@ -32,6 +32,11 @@ class CounterViewModel : ViewModel() {
     val attack3 = mutableStateOf(0)
     val armor3 = mutableStateOf(0)
 
+    // Contadores para la fortaleza
+    val healtFort = mutableStateOf(0)
+    val runas = mutableStateOf(0)
+    val sellos = mutableStateOf(0)
+
     // Selección de héroe 1
     fun onHero1Selected(hero: Hero) {
         selectedHero1.value = hero
@@ -72,12 +77,22 @@ class CounterViewModel : ViewModel() {
     fun increaseArmor2() { armor2.value++ }
     fun decreaseArmor2() { armor2.value-- }
 
-    // Incrementar/disminuir contadores para héroe 2
-    fun increaseHealth3() { health2.value++ }
-    fun decreaseHealth3() { health2.value-- }
-    fun increaseAttack3() { attack2.value++ }
-    fun decreaseAttack3() { attack2.value-- }
-    fun increaseArmor3() { armor2.value++ }
-    fun decreaseArmor3() { armor2.value-- }
+    // Incrementar/disminuir contadores para héroe 3
+    fun increaseHealth3() { health3.value++ }
+    fun decreaseHealth3() { health3.value-- }
+    fun increaseAttack3() { attack3.value++ }
+    fun decreaseAttack3() { attack3.value-- }
+    fun increaseArmor3() { armor3.value++ }
+    fun decreaseArmor3() { armor3.value-- }
+
+    // Incrementar/disminuir contadores para la fortaleza
+    fun increaseHealthFor() { healtFort.value++ }
+    fun decreaseHealthFor() { healtFort.value-- }
+    fun increaseRunas() { runas.value++ }
+    fun decreaseRunas() { runas.value-- }
+    fun increaseSellos() { sellos.value++ }
+    fun decreaseSellos() { sellos.value-- }
+
+
 
 }
