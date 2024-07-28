@@ -55,7 +55,7 @@ class CounterViewModel : ViewModel() {
 
     // Selección de héroe 3
     fun onHero3Selected(hero: Hero) {
-        selectedHero2.value = hero
+        selectedHero3.value = hero
         health3.value = hero.initialHealth
         attack3.value = hero.initialAttack
         armor3.value = hero.initialArmor

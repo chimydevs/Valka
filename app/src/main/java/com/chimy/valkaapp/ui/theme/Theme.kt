@@ -8,14 +8,15 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
+
 private val DarkColors = darkColorScheme(
     primary = Orange40,
     onPrimary = Color.White,
     secondary = DarkOrange,
     onSecondary = Color.White,
-    background = Color.Black,
+    background = DarkBackground,
     onBackground = Color.White,
-    surface = Color.Black,
+    surface = DarkBox,
     onSurface = Color.White
 )
 
@@ -24,9 +25,9 @@ private val LightColors = lightColorScheme(
     onPrimary = Color.Black,
     secondary = Orange60,
     onSecondary = Color.Black,
-    background = LightOrange,
+    background = LightBackground,
     onBackground = Color.Black,
-    surface = Color.White,
+    surface = LightBox,
     onSurface = Color.Black
 )
 
