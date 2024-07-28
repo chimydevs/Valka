@@ -17,6 +17,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -301,24 +302,18 @@ fun HeroCounterContainer(viewModel: CounterViewModel = viewModel()) {
 
         // Caja Fortaleza
         Column {
-            Box {
-                Text(
-                    text = ("Fortaleza"),
-                    color = MaterialTheme.colorScheme.onSurface
-                )
-            }
-            DropdownMenu(
-                expanded = expandedHero1,
-                onDismissRequest = { expandedHero1 = false }
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier.fillMaxWidth()
             ) {
-                viewModel.heroes.forEach { hero ->
-                    DropdownMenuItem(
-                        text = { Text(text = hero.name) },
-                        onClick = {
-                            viewModel.onHero1Selected(hero)
-                            expandedHero1 = false
-                        },
-                        interactionSource = interactionSource
+                Button(
+                    onClick = { /* No hace nada */ },
+                    elevation = ButtonDefaults.buttonElevation(0.dp, 0.dp), // Quitar elevación para parecerse a un texto
+                    modifier = Modifier.padding(horizontal = 8.dp) // Ajusta el padding según sea necesario
+                ) {
+                    Text(
+                        text = "Fortaleza",
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }
@@ -366,6 +361,9 @@ fun HeroCounterContainer(viewModel: CounterViewModel = viewModel()) {
                 )
             }
         }
+
+
+
     }
 
 
